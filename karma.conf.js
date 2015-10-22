@@ -1,7 +1,6 @@
 'use strict';
 
 var path = require('path');
-var _ = require('lodash');
 
 module.exports = function (config) {
   'use strict';
@@ -14,24 +13,23 @@ module.exports = function (config) {
       'jasmine'
     ],
 
-    files: _.flatten([
+    files:
       [
         // bower:js
         // endbower
-      ],
+      ].concat(
       [
         // inject:app
         // endinject
-      ],
+      ]).concat(
       [
         // inject:helpers
         // endinject
-      ],
+      ]).concat(
       [
         // inject:specs
         // endinject
-      ]
-    ], true),
+      ]),
 
     exclude: [
       'bower_components/ng-corballis/src/ng-init/init.js'
