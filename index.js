@@ -20,7 +20,6 @@ exports.config = function (overrides) {
   _.extend(config.paths, overrides.paths);
   _.extend(config.templateCache, overrides.templateCache);
   _.extend(config.proxy, overrides.proxy);
-  _.extend(config.karma, overrides.karma);
   _.extend(config.protractor, overrides.protractor);
   _.extend(config.wiredep, overrides.wiredep);
 };
