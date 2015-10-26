@@ -190,3 +190,18 @@ If you just execute gulp in your project's root, it executes a complete build. T
  	* --type=minor will bump the minor version *.x.*
  	* --type=major will bump the major version x.*.*
  	* --version=1.2.3 will bump to a specific version and ignore other flags    
+
+## Configuration
+
+You can configure certain aspects of the build pipeline by passing in an overrides object:
+
+```javascript
+require('corballis-build').config({
+  scssOrder: {
+    after: ['styles/unicorn.scss', 'styles/unicorn.grey.scss', 'styles/reports.scss']
+  }
+  ...
+});
+```
+
+For a full list of the available options please refer to [config.js](config.js)
