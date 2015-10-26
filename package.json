@@ -2,7 +2,7 @@
   "name": "corballis-build",
   "description": "An opinionated Gulp build pipeline for AngularJS apps",
   "main": "index.js",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "http://www.corballis.ie",
   "license": "MIT",
   "bugs": {
