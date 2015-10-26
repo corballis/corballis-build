@@ -79,3 +79,25 @@ exports.karma = {
     defaultTimeoutInterval: 30000
   }
 };
+
+exports.protractor = {
+
+  framework: 'jasmine2',
+
+  multiCapabilities: [
+//    {
+//      browserName: 'firefox'
+//    },
+    {
+      browserName: 'chrome'
+    }
+  ],
+  maxSessions: 1,
+
+  baseUrl: 'http://localhost:3001',
+
+  jasmineNodeOpts: {
+    showColors: true,
+    defaultTimeoutInterval: 30000
+  }
+};
