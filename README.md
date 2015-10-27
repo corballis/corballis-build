@@ -25,6 +25,10 @@ Features:
 
 ## Quick Start
 
+Install the prerequisites listed on the following sites (Python and Visual Studio):
+* https://github.com/nodejs/node-gyp
+* http://www.browsersync.io/docs/
+
 Install gulp:
 
 	npm install gulp --save-dev
@@ -42,7 +46,6 @@ Create a gulpfile.js in your project's root:
 ```javascript
 require('corballis-build');
 ```
-That's it. If you are using Windows, you will need to install Visual Studio in order to compile the required dependencies. Follow the instructions at http://www.browsersync.io/docs/
 
 ## Gulp Tasks
 
