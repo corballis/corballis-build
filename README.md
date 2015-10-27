@@ -29,6 +29,10 @@ Install gulp:
 
 	npm install gulp --save-dev
 
+Install bower:
+
+	npm install bower --save-dev
+
 Install corballis-build:
 
 	npm install corballis-build --save-dev
@@ -205,3 +209,68 @@ require('corballis-build').config({
 ```
 
 For a full list of the available options please refer to [config.js](config.js)
+
+## Maven Integration
+
+Below is a sample of how to integrate the Gulp build into your Maven build. The sample below assumes a Spring Boot application, but it can be easily adjusted for other server application types.
+
+```xml
+<plugin>
+    <groupId>com.github.eirslett</groupId>
+    <artifactId>frontend-maven-plugin</artifactId>
+    <version>0.0.26</version>
+    <configuration>
+    	<!-- Location of your client project relative to this POM -->
+        <workingDirectory>../client</workingDirectory>
+    </configuration>
+    <executions>
+        <execution>
+            <id>install node and npm</id>
+            <goals>
+                <goal>install-node-and-npm</goal>
+            </goals>
+            <phase>prepare-package</phase>
+            <configuration>
+                <nodeVersion>v4.2.1</nodeVersion>
+                <npmVersion>3.3.9</npmVersion>
+            </configuration>
+        </execution>
+        <execution>
+            <id>npm install</id>
+            <goals>
+                <goal>npm</goal>
+            </goals>
+            <phase>prepare-package</phase>
+        </execution>
+        <execution>
+            <id>bower install</id>
+            <goals>
+                <goal>bower</goal>
+            </goals>
+            <phase>prepare-package</phase>
+        </execution>
+        <execution>
+            <id>gulp build</id>
+            <goals>
+                <goal>gulp</goal>
+            </goals>
+            <phase>prepare-package</phase>
+        </execution>
+    </executions>
+</plugin>
+
+<plugin>
+    <artifactId>maven-war-plugin</artifactId>
+    <version>2.3</version>
+    <configuration>
+        <packagingExcludes>WEB-INF/classes/META-INF/orm.xml</packagingExcludes>
+        <webResources>
+            <resource>
+            	<!-- Location of your dist folder in the client project -->
+                <directory>../client/dist</directory>
+                <targetPath>public</targetPath>
+            </resource>
+        </webResources>
+    </configuration>
+</plugin>
+```
