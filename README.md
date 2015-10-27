@@ -31,11 +31,11 @@ Install the prerequisites listed on the following sites (Python and Visual Studi
 
 Install gulp:
 
-	npm install gulp --save-dev
+	npm install gulp -g
 
 Install bower:
 
-	npm install bower --save-dev
+	npm install bower -g
 
 Install corballis-build:
 
