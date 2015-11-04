@@ -17,11 +17,3 @@ gulp.task('image-revisions', function () {
     .pipe(gulpPlugins.rev.manifest())
     .pipe(gulp.dest(path.join(config.paths.dist, config.paths.distImages)));
 });
-
-gulp.task('rev-replace-images', ['html', 'fonts', 'other', 'image-revisions'], function () {
-  var manifest = gulp.src(path.join(config.paths.dist, config.paths.distImages, "/rev-manifest.json"));
-
-  gulp.src(path.join(config.paths.dist, '/**/*'))
-    .pipe(gulpPlugins.revReplace({manifest: manifest}))
-    .pipe(gulp.dest(config.paths.dist));
-});

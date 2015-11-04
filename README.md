@@ -59,11 +59,12 @@ If you just execute gulp in your project's root, it executes a complete build. T
 * `partials`
 * `fonts`
 * `image-revisions`
+* `translation-revisions`
 * `plato`
 * `inject`
 * `html`
 * `other`
-* `rev-replace-images`
+* `rev-replace-dist`
 * `build`
 * `test-nodep`
 
@@ -133,7 +134,7 @@ If you just execute gulp in your project's root, it executes a complete build. T
 
     Remove all files from the build and temp folders.
 
-### Fonts and Images
+### Fonts, Images, Translations
 
 - `gulp fonts`
 
@@ -142,10 +143,14 @@ If you just execute gulp in your project's root, it executes a complete build. T
 - `gulp image-revisions`
 
     Runs imagemin on all images and copies the revisioned files to the dist folder.
-    
-- `gulp rev-replace-images`
 
-    Replaces references to images in all files with their revisioned versions.    
+- `gulp translation-revisions`
+
+    Revisions translation files to the dist folder.
+    
+- `gulp rev-replace-dist`
+
+    Replaces references to images and translation files in all files with their revisioned versions.
 
 ### Styles
 

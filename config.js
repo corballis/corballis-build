@@ -19,6 +19,8 @@ exports.paths = {
   htmls: 'app/**/*.html',
   // Glob pattern for the image files
   images: 'app/images/**/*',
+  // Glob pattern for the translation files
+  translations: 'app/languages/**/*',
   // Glob pattern for the root HTML files. These files will be processed by the html task
   rootHtmls: 'app/*.html',
   // Main SASS file
@@ -47,6 +49,8 @@ exports.paths = {
   fonts: '/fonts/',
   // Location of the images in the production build
   distImages: '/images',
+  // Location of the translation files in the production build
+  distTranslations: '/languages',
   // Location of the test helper files
   testHelpers: 'test-helpers',
   unit: 'unit',

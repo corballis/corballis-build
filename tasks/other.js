@@ -17,7 +17,8 @@ gulp.task('other', ['image-revisions'], function () {
       path.join(config.paths.app, '/**/*'),
       path.join('!' + config.paths.app, excludedFiles),
       path.join('!' + config.paths.images),
-      path.join('!' + config.paths.rootHtmls)
+      path.join('!' + config.paths.rootHtmls),
+      path.join('!' + config.paths.translations)
     ])
     .pipe(fileFilter)
     .pipe(htmlFilter)

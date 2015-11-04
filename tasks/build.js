@@ -2,4 +2,4 @@
 
 var gulp = require('gulp');
 
-gulp.task('build', ['rev-replace-images']);
+gulp.task('build', ['rev-replace-dist']);
