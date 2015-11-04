@@ -9,7 +9,7 @@ function isOnlyChange(event) {
   return event.type === 'changed';
 }
 
-gulp.task('watch', ['inject'], function () {
+gulp.task('watch', ['inject', 'import-translations-from-bower'], function () {
 
   gulp.watch([config.paths.rootHtmls, 'bower.json'], ['inject']);
 
@@ -30,6 +30,10 @@ gulp.task('watch', ['inject'], function () {
     } else {
       gulp.start('inject');
     }
+  });
+
+  gulp.watch(config.paths.translations, function () {
+    gulp.start('import-translations-from-bower');
   });
 
   gulp.watch([config.paths.htmls, '!' + config.paths.rootHtmls], function (event) {

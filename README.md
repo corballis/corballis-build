@@ -59,6 +59,7 @@ If you just execute gulp in your project's root, it executes a complete build. T
 * `partials`
 * `fonts`
 * `image-revisions`
+* `import-translations-from-bower`
 * `translation-revisions`
 * `plato`
 * `inject`
@@ -143,6 +144,12 @@ If you just execute gulp in your project's root, it executes a complete build. T
 - `gulp image-revisions`
 
     Runs imagemin on all images and copies the revisioned files to the dist folder.
+
+- `gulp import-translations-from-bower`
+
+    Merge translation files found in bower components with the application's translations files. We assume that all
+    translation files in bower components have a suffix of .lang.json and that they are listed in the bower components
+    main section.
 
 - `gulp translation-revisions`
 

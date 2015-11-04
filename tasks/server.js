@@ -40,8 +40,7 @@ function browserSyncInit(baseDir, browser, serverPort, clientPort) {
     port: clientPort,
     startPath: '/',
     server: server,
-    browser: browser,
-    open: false
+    browser: browser
   });
 }
 
@@ -53,7 +52,7 @@ gulp.task('serve', ['clean', 'watch'], function () {
   browserSyncInit([path.join(config.paths.tmp, config.paths.serve), config.paths.app]);
 });
 
-gulp.task('serve:dist', ['build'], function () {
+gulp.task('serve:dist', ['clean', 'build'], function () {
   browserSyncInit(config.paths.dist);
 });
 

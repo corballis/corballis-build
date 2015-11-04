@@ -11,7 +11,9 @@
   "dependencies": {
     "browser-sync": "2.9.11",
     "browser-sync-spa": "1.0.3",
+    "deepmerge": "0.2.10",
     "del": "2.0.2",
+    "event-stream": "3.3.2",
     "glob": "5.0.15",
     "gulp-angular-filesort": "1.1.1",
     "gulp-angular-templatecache": "1.8.0",
@@ -23,6 +25,7 @@
     "gulp-debug": "2.1.2",
     "gulp-filter": "3.0.1",
     "gulp-flatten": "0.2.0",
+    "gulp-group-aggregate": "0.0.4",
     "gulp-if": "2.0.0",
     "gulp-imagemin": "2.3.0",
     "gulp-inject": "3.0.0",
