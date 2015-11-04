@@ -40,7 +40,8 @@ function browserSyncInit(baseDir, browser, serverPort, clientPort) {
     port: clientPort,
     startPath: '/',
     server: server,
-    browser: browser
+    browser: browser,
+    open: false
   });
 }
 
