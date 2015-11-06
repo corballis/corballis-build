@@ -17,7 +17,7 @@ function browserSyncInit(baseDir, browser, serverPort, clientPort) {
   if (baseDir === config.paths.app || (util.isArray(baseDir) && baseDir.indexOf(config.paths.app) !== -1)) {
     routes = {
       '/bower_components': 'bower_components',
-      '/font': 'bower_components/font-awesome/font',
+      '/fonts': 'bower_components/font-awesome/fonts',
       '/fonts/bootstrap': 'bower_components/bootstrap-sass/assets/fonts/bootstrap'
     };
   }
