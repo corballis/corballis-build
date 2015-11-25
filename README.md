@@ -265,6 +265,16 @@ Below is a sample of how to integrate the Gulp build into your Maven build. The 
             <phase>prepare-package</phase>
         </execution>
         <execution>
+            <id>npm rebuild node-sass</id>
+            <goals>
+                <goal>npm</goal>
+            </goals>
+            <phase>prepare-package</phase>
+            <configuration>
+                <arguments>rebuild node-sass</arguments>
+            </configuration>
+        </execution>
+        <execution>
             <id>gulp build</id>
             <goals>
                 <goal>gulp</goal>
