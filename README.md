@@ -47,6 +47,43 @@ Create a gulpfile.js in your project's root:
 require('corballis-build');
 ```
 
+Add the following snippets to your index.html:
+
+    <head>
+        ...
+
+        <!-- build:css({.tmp/serve,app}) styles/vendor.css -->
+        <!-- bower:css -->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:css({.tmp/serve,app}) styles/app.css -->
+        <!-- inject:css -->
+        <!-- endinject -->
+        <!-- endbuild -->
+
+        ...
+    </head>
+
+    <body>
+        ...
+
+        <!-- build:js(app) scripts/vendor.js -->
+        <!-- bower:js -->
+        <!-- endbower -->
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp/serve,.tmp/partials,app}) scripts/app.js -->
+        <!-- inject:js -->
+        <!-- endinject -->
+
+        <!-- inject:partials -->
+        <!-- endinject -->
+        <!-- endbuild -->
+
+        ...
+    </body>
+
 ## Gulp Tasks
 
 ### Default
