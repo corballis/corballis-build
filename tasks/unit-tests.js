@@ -10,7 +10,9 @@ function runTests(singleRun, done) {
     configFile: path.resolve(path.join(config.paths.tmp, config.paths.karma, 'karma.conf.js')),
     singleRun: singleRun,
     autoWatch: !singleRun
-  }, done).start();
+  }, function () {
+    done();
+  }).start();
 }
 
 gulp.task('test:nodep', function (done) {
