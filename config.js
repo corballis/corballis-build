@@ -31,6 +31,8 @@ exports.paths = {
   vendorCss: '/serve/app/vendor.css',
   // Glob pattern for all test files
   specs: 'app/**/specs/**/*.js',
+  // Glob pattern for page objects of e2e test
+  e2eSpecsWithoutPageObjects: 'app/**/specs/e2e/**/!(*-page).js',
   // Glob pattern for e2e tests
   e2eSpecs: 'app/**/specs/e2e/**/*.js',
   // Glob pattern for unit tests
@@ -101,17 +103,7 @@ exports.protractor = {
 
   framework: 'jasmine2',
 
-  multiCapabilities: [
-//    {
-//      browserName: 'firefox'
-//    },
-    {
-      browserName: 'chrome'
-    }
-  ],
   maxSessions: 1,
-
-  baseUrl: 'http://localhost:3001',
 
   jasmineNodeOpts: {
     showColors: true,

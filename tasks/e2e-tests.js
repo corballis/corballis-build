@@ -4,6 +4,7 @@ var path = require('path');
 var gulp = require('gulp');
 var config = require('../config');
 var fs = require('fs');
+var glob = require('glob');
 
 var browserSync = require('browser-sync');
 
@@ -20,7 +21,7 @@ function saveTempConfig() {
   }
 
   var confFile = e2eTmp + '/e2e.conf.js';
-  fs.writeFile(confFile, 'exports.config=' + bundle(config.protractor) + ';', console.log);
+  fs.writeFile(confFile, 'exports.config=' + bundle(config.protractor) + ';');
   return confFile;
 }
 
@@ -40,9 +41,54 @@ function bundle(obj) {
   return Array.isArray(obj) ? '[' + ret.join(',') + ']' : '{' + ret.join(',') + '}';
 }
 
+function distributeParallelTests() {
+  var specs = findE2eSpecs();
+  config.protractor.multiCapabilities = [];
+  var ports = process.env.PROTRACTOR_DOCKER_PORTS ? process.env.PROTRACTOR_DOCKER_PORTS.split(';') : ['3001'];
+  var browserCount = ports.length;
+  initMultipleCapabilities(ports);
+
+  for (var j = 0; j < specs.length; j++) {
+    config.protractor.multiCapabilities[j % browserCount].specs.push(specs[j]);
+  }
+
+  setupBaseUrl();
+//  console.log(config.protractor.multiCapabilities);
+}
+
+function findE2eSpecs() {
+  var files = glob.sync(config.paths.e2eSpecsWithoutPageObjects);
+  var resolvedSpecs = [];
+  for (var i = 0; i < files.length; i++) {
+    resolvedSpecs.push('../../' + files[i]);
+  }
+  return resolvedSpecs;
+}
+
+function initMultipleCapabilities(ports) {
+  config.protractor.multiCapabilities = [];
+  for (var i = 0; i < ports.length; i++) {
+    config.protractor.multiCapabilities.push({
+      browserName: 'chrome',
+      port: ports[i],
+      specs: []
+    });
+  }
+}
+
+function setupBaseUrl() {
+  config.protractor.onPrepare = function () {
+    browser.baseUrl = 'http://localhost:' + browser.getProcessedConfig().value_.capabilities.port;
+    if (browser.getProcessedConfig().value_.onPrepareCustom) {
+      browser.getProcessedConfig().value_.onPrepareCustom();
+    }
+  }
+}
+
 function runProtractor(done) {
   var params = process.argv;
   var args = params.length > 3 ? [params[3], params[4]] : [];
+  distributeParallelTests();
 
   gulp.src(config.paths.e2eSpecs)
     .pipe(gulpPlugins.protractor.protractor({
