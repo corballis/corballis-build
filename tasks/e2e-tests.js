@@ -52,7 +52,7 @@ function distributeParallelTests() {
     config.protractor.multiCapabilities[j % browserCount].specs.push(specs[j]);
   }
 
-  setupBaseUrl();
+  prepareTests();
 //  console.log(config.protractor.multiCapabilities);
 }
 
@@ -76,8 +76,28 @@ function initMultipleCapabilities(ports) {
   }
 }
 
-function setupBaseUrl() {
+function prepareTests() {
   config.protractor.onPrepare = function () {
+    var jasmineReporters = require('jasmine-reporters');
+
+    browser.getProcessedConfig().then(function(config) {
+      // you could use other properties here if you want, such as platform and version
+      var browserName = config.capabilities.browserName;
+
+      var junitReporter = new jasmineReporters.JUnitXmlReporter({
+        consolidateAll: true,
+        savePath: 'testresults',
+        // this will produce distinct xml files for each capability
+        filePrefix: browserName + '-xmloutput',
+        modifySuiteName: function(generatedSuiteName, suite) {
+          // this will produce distinct suite names for each capability,
+          // e.g. 'firefox.login tests' and 'chrome.login tests'
+          return browserName + '.' + generatedSuiteName;
+        }
+      });
+      jasmine.getEnv().addReporter(junitReporter);
+    });
+
     browser.baseUrl = 'http://localhost:' + browser.getProcessedConfig().value_.capabilities.port;
     if (browser.getProcessedConfig().value_.onPrepareCustom) {
       browser.getProcessedConfig().value_.onPrepareCustom();
