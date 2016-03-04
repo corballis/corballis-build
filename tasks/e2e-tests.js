@@ -77,6 +77,7 @@ function initMultipleCapabilities(ports) {
 }
 
 function prepareTests() {
+  config.protractor.seleniumAddress = 'http://'+ process.env.HOST_IP +':4444/wd/hub';
   config.protractor.onPrepare = function () {
     var jasmineReporters = require('jasmine-reporters');
 
@@ -96,12 +97,13 @@ function prepareTests() {
         }
       });
       jasmine.getEnv().addReporter(junitReporter);
-    });
 
-    browser.baseUrl = 'http://localhost:' + browser.getProcessedConfig().value_.capabilities.port;
-    if (browser.getProcessedConfig().value_.onPrepareCustom) {
-      browser.getProcessedConfig().value_.onPrepareCustom();
-    }
+
+      browser.baseUrl = 'http://'+ process.env.HOST_IP + ':' + config.capabilities.port;
+      if (config.onPrepareCustom) {
+        config.onPrepareCustom();
+      }
+    });
   }
 }
 
