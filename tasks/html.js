@@ -6,7 +6,7 @@ var config = require('../config');
 var gulpPlugins = require('gulp-load-plugins')();
 var errorHandling = require('../error-handling');
 
-gulp.task('html', ['inject', 'partials'], function () {
+gulp.task('html', ['ts-compile-emit', 'inject', 'partials'], function () {
   var partialsInjectFile = gulp.src(path.join(config.paths.tmp, config.paths.partials, config.templateCache.filename), { read: false });
 
   var partialsInjectOptions = {

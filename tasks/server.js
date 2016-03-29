@@ -61,7 +61,7 @@ gulp.task('serve:e2e', ['clean', 'watch'], function () {
   browserSyncInit([path.join(config.paths.tmp, config.paths.serve), config.paths.app], [], 8081, 3001);
 });
 
-gulp.task('serve:e2e-single', ['clean', 'inject'], function() {
+gulp.task('serve:e2e-single', ['clean', 'ts-compile-emit', 'inject'], function() {
   browserSyncInit([path.join(config.paths.tmp, config.paths.serve), config.paths.app], [], 8081, 3001);
 });
 

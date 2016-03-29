@@ -9,7 +9,7 @@ function isOnlyChange(event) {
   return event.type === 'changed';
 }
 
-gulp.task('watch', ['inject', 'import-translations-from-bower'], function () {
+gulp.task('watch', ['ts-compile-emit', 'inject', 'import-translations-from-bower'], function () {
 
   gulp.watch([config.paths.rootHtmls, 'bower.json'], ['inject']);
 
@@ -38,5 +38,9 @@ gulp.task('watch', ['inject', 'import-translations-from-bower'], function () {
 
   gulp.watch([config.paths.htmls, '!' + config.paths.rootHtmls], function (event) {
     browserSync.reload(event.path);
+  });
+
+  gulp.watch(config.paths.typeScripts, function () {
+    gulp.start('ts-compile-no-emit');
   });
 });

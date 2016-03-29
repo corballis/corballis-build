@@ -11,6 +11,8 @@ exports.paths = {
   reports: 'reports',
   // Glob pattern for the application sources
   scripts: 'app/**/*.js',
+  // Glob pattern for the application type script sources
+  typeScripts: 'app/**/*.ts',
   // Glob pattern for the application SASS styles
   sassStyles: 'app/**/*.scss',
   // Glob pattern for the application CSS styles
