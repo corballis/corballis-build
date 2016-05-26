@@ -79,7 +79,7 @@ exports.templateCache = {
 // HTTP proxy configuration
 exports.proxy = {
   // URL of the server side part of the application
-  springHost: 'http://' + process.env.HOST_IP
+  springHost: 'http://' + (process.env.HOST_IP || 'localhost')
 };
 
 /**
